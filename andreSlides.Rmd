@@ -1,0 +1,54 @@
+---
+title: "Soccer stadiums in São Paulo (Brazil)"
+author: "Andre Morato"
+date: "March 24, 2017"
+output: ioslides_presentation
+---
+
+
+## INTERACTIVE MAP
+
+### Click on images for more information
+
+```{r, echo=FALSE, warning=FALSE}
+library(leaflet)
+stadiumIcon <- iconList(
+  stadium1 = makeIcon(iconUrl = "http://cdn.torcedores.com/content/uploads/2015/09/arena-corinthians.jpg",iconWidth = 100*215/230, iconHeight = 100,iconAnchorX = 100*215/230/2, iconAnchorY = 16),
+  stadium2 = makeIcon(iconUrl = "http://tricolornaweb.com.br/wordpress/wp-content/uploads/2011/10/Estadio1.jpg",iconWidth = 100*215/230, iconHeight = 100,iconAnchorX = 100*215/230/2, iconAnchorY = 16),
+  stadium3 = makeIcon(iconUrl = "http://cdn.cbf.com.br/content/thumbs/974x546/201505/20150501172042_0.jpeg",iconWidth = 100*215/230, iconHeight = 100,iconAnchorX = 100*215/230/2, iconAnchorY = 16),
+  stadium4 = makeIcon(iconUrl = "http://www.gazetaesportiva.com/wp-content/uploads/imagem/2016/11/17/728x487.jpg",iconWidth = 100*215/230, iconHeight = 100,iconAnchorX = 100*215/230/2, iconAnchorY = 16),
+  stadium5 = makeIcon(iconUrl = "http://www.tribunadabahia.com.br/thumbnail.ashx?w=468&h=0&img=%2fupload%2fimages%2f2013-03-06%2f20130306020439_palmeiras.jpg&s=y",iconWidth = 100*215/230, iconHeight = 100,iconAnchorX = 100*215/230/2, iconAnchorY = 16),
+  stadium6 = makeIcon(iconUrl = "http://www.torcedoreslivres.com.br/wp-content/uploads/2016/09/Pacaembu-780x585.jpg",iconWidth = 100*215/230, iconHeight = 100,iconAnchorX = 100*215/230/2, iconAnchorY = 16)
+)
+
+stadiumLatLong <- data.frame(
+  lat = c(-23.5448598, -23.6000888, -23.5275868, -23.5249803, -23.5532921, -23.547107),
+  lng = c(-46.4742891, -46.7200902, -46.6784688, -46.6180897, -46.6048538, -46.6652573))
+
+stadiumInfo <- c(
+  paste(sep = "<br/>",
+  "<b><a href='http://www.corinthians.com.br/home/'>Arena Corinthians</a></b>",
+  "Capacity: 49205",  "Club owner: Corinthians"),
+  paste(sep = "<br/>",
+  "<b><a href='http://www.saopaulofc.net/'>Morumbi</a></b>",
+  "Capacity: 72039",  "Club owner: São Paulo Futebol Clube"),
+  paste(sep = "<br/>",
+  "<b><a href='http://www.palmeiras.com.br/home/'>Allianz Parque</a></b>",
+  "Capacity: 43713",  "Club owner: Palmeiras"),
+  paste(sep = "<br/>",
+  "<b><a href='http://portuguesa.com.br/'>Canindé</a></b>",
+  "Capacity: 21004",  "Club owner: Portuguesa"),
+  paste(sep = "<br/>",
+  "<b><a href='http://www.juventus.com.br/'>Rua Javari</a></b>",
+  "Capacity: 3800",  "Club owner: Juventus"),
+  paste(sep = "<br/>",
+  "<b><a href='https://en.wikipedia.org/wiki/S%C3%A3o_Paulo'>Pacaembu</a></b>",
+  "Capacity: 40199",  "Club owner: No club [Owned by City of São Paulo]")
+)
+
+stadiumLatLong %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = stadiumIcon,clusterOptions = markerClusterOptions(), popup=stadiumInfo)
+```
+
