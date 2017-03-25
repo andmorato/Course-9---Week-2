@@ -1,12 +1,4 @@
----
-title: "Soccer stadiums in São Paulo (Brazil)"
-author: "Andre Morato"
-date: "March 24, 2017"
-output: ioslides_presentation
----
-
-
-## INTERACTIVE MAP
+## Soccer stadiums in São Paulo (Brazil)
 
 ### Click on images for more information
 
@@ -52,3 +44,5 @@ stadiumLatLong %>%
   addMarkers(icon = stadiumIcon,clusterOptions = markerClusterOptions(), popup=stadiumInfo)
 ```
 
+author: "Andre Morato"
+date: "March 24, 2017"
